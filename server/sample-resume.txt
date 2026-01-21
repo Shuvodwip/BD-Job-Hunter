@@ -1,0 +1,43 @@
+John Doe
+Software Engineer
+
+Email: john.doe@email.com | Phone: +123-456-7890 | Location: San Francisco, CA
+LinkedIn: linkedin.com/in/johndoe | GitHub: github.com/johndoe
+
+PROFESSIONAL SUMMARY
+Experienced Full-Stack Software Engineer with 5+ years of expertise in building scalable web applications using Node.js, React, and cloud technologies. Passionate about creating efficient, user-friendly solutions and staying current with emerging technologies.
+
+TECHNICAL SKILLS
+Languages: JavaScript, TypeScript, Python, Java
+Frontend: React, Next.js, HTML5, CSS3, Tailwind CSS
+Backend: Node.js, Express, REST APIs, GraphQL
+Databases: MongoDB, PostgreSQL, MySQL, Redis
+Cloud & DevOps: AWS (EC2, S3, Lambda), Docker, Kubernetes, CI/CD
+Tools: Git, Webpack, Jest, Postman
+
+PROFESSIONAL EXPERIENCE
+
+Senior Software Engineer | Tech Solutions Inc. | Jan 2021 - Present
+• Led development of microservices architecture processing 1M+ daily transactions
+• Improved application performance by 40% through code optimization and caching strategies
+• Mentored junior developers and conducted code reviews
+• Implemented automated testing reducing bugs by 60%
+
+Software Engineer | StartupXYZ | Jun 2019 - Dec 2020
+• Developed RESTful APIs serving 100K+ users using Node.js and Express
+• Built responsive frontend components with React and Redux
+• Integrated third-party payment APIs (Stripe, PayPal)
+• Participated in agile development sprints and daily standups
+
+EDUCATION
+Bachelor of Science in Computer Science
+University of California, Berkeley | 2019
+
+PROJECTS
+E-commerce Platform: Built full-stack e-commerce app with payment integration and real-time inventory
+AI Chatbot: Created NLP-powered customer support bot using Python and TensorFlow
+Personal Portfolio: Designed responsive portfolio website with Next.js and deployed on Vercel
+
+CERTIFICATIONS
+AWS Certified Solutions Architect - Associate
+MongoDB Certified Developer

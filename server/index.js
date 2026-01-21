@@ -1,11 +1,12 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 const express = require('express');
 const cors = require('cors');
-const dotenv = require('dotenv');
 const multer = require('multer');
 const pdf = require('pdf-parse');
 const { chunkText } = require('./utils/textSplitter');
-
-dotenv.config();
+const { generateEmbeddings } = require('./services/geminiService');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -36,16 +37,30 @@ app.post('/upload', upload.single('resume'), async (req, res) => {
 
         console.log(`PDF Extracted, length: ${text.length}, Chunks: ${chunks.length}`);
 
+        // Generate embeddings for each chunk
+        console.log('Generating embeddings...');
+        const embeddings = await generateEmbeddings(chunks);
+        console.log(`Generated ${embeddings.length} embeddings`);
+
+        // Store chunks with embeddings (in-memory for now, Phase 3 will add vector store)
+        const resumeData = chunks.map((chunk, i) => ({
+            id: `chunk_${i}`,
+            text: chunk,
+            embedding: embeddings[i]
+        }));
+
         // Return chunks for frontend visualization (temporary)
         res.json({
-            message: 'PDF processed successfully',
+            message: 'PDF processed and embedded successfully',
             textPreview: text.substring(0, 200),
             chunkCount: chunks.length,
+            embeddingDimension: embeddings[0]?.length || 0,
             chunks: chunks
         });
     } catch (error) {
         console.error('PDF parsing error:', error);
-        res.status(500).json({ error: 'Failed to process PDF' });
+        console.error('Error stack:', error.stack);
+        res.status(500).json({ error: 'Failed to process PDF', details: error.message });
     }
 });
 
