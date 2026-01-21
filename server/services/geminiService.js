@@ -44,7 +44,7 @@ async function generateEmbeddings(texts) {
  */
 async function analyzeFit(jobDescription, relevantChunks) {
     try {
-        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+        const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
         const prompt = `You are an expert recruiter analyzing resume-job fit.
 
@@ -84,8 +84,36 @@ Respond in JSON format:
     }
 }
 
+/**
+ * Extracts key technical usage criteria from a Job Description to use as search queries
+ * @param {string} jobDescription 
+ * @returns {Promise<string[]>} Array of short criteria strings
+ */
+async function extractJobCriteria(jobDescription) {
+    try {
+        const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+        const prompt = `Extract 3-5 distinct, search-friendly technical requirements/skills from this job description. 
+    Return ONLY a JSON array of strings.
+    Example: ["React.js experience", "Node.js backend development", "AWS cloud infrastructure"]
+    
+    Job Description:
+    ${jobDescription.substring(0, 5000)}`; // Truncate to avoid limits
+
+        const result = await model.generateContent(prompt);
+        const response = result.response.text();
+        const jsonMatch = response.match(/\[[\s\S]*\]/);
+
+        if (!jsonMatch) return [jobDescription]; // Fallback to whole text
+        return JSON.parse(jsonMatch[0]);
+    } catch (error) {
+        console.warn('Criteria extraction failed, using raw text:', error);
+        return [jobDescription.substring(0, 200)];
+    }
+}
+
 module.exports = {
     generateEmbedding,
     generateEmbeddings,
-    analyzeFit
+    analyzeFit,
+    extractJobCriteria
 };
