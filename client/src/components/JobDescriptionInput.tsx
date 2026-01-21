@@ -8,19 +8,24 @@ interface JobDescriptionInputProps {
 
 const JobDescriptionInput: React.FC<JobDescriptionInputProps> = ({ value, onChange }) => {
     return (
-        <div className="space-y-3">
-            <div className="flex items-center space-x-2 text-slate-200">
-                <Briefcase className="w-5 h-5 text-purple-400" />
-                <h3 className="font-semibold">Job Description</h3>
+        <div className="space-y-3 h-full flex flex-col">
+            <div className="flex items-center space-x-2 text-slate-800">
+                <div className="p-1.5 bg-yellow-100 rounded-lg">
+                    <Briefcase className="w-5 h-5 text-yellow-600" />
+                </div>
+                <h3 className="font-bold text-lg">Job Description</h3>
             </div>
-            <div className="relative group">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl opacity-20 group-hover:opacity-40 transition duration-300 blur"></div>
+            <div className="relative group flex-grow">
                 <textarea
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
-                    placeholder="Paste the job description here (responsibilities, requirements, skills)..."
-                    className="relative w-full h-48 bg-slate-900 border border-slate-700 rounded-xl p-4 text-slate-300 placeholder-slate-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all resize-none custom-scrollbar"
+                    placeholder="Paste the job requirements here..."
+                    className="w-full h-full min-h-[250px] bg-white border-2 border-slate-200 rounded-2xl p-6 text-slate-800 placeholder-slate-400 
+          focus:outline-none focus:border-yellow-400 focus:shadow-[0_0_0_4px_rgba(250,204,21,0.2)] transition-all resize-none custom-scrollbar font-medium text-lg"
                 />
+                <div className="absolute bottom-4 right-4 pointer-events-none">
+                    <span className="text-xs font-bold text-slate-300 bg-slate-50 px-2 py-1 rounded">Text Area</span>
+                </div>
             </div>
         </div>
     );

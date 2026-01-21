@@ -42,21 +42,21 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileSelect, selectedFile }) =
 
     if (selectedFile) {
         return (
-            <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-4 flex items-center justify-between group hover:border-blue-500/50 transition-all">
+            <div className="bg-white border-2 border-yellow-400 rounded-2xl p-4 flex items-center justify-between shadow-md">
                 <div className="flex items-center space-x-4">
-                    <div className="p-3 bg-blue-500/20 rounded-lg">
-                        <FileText className="w-6 h-6 text-blue-400" />
+                    <div className="p-3 bg-yellow-100 rounded-xl">
+                        <FileText className="w-8 h-8 text-yellow-600" />
                     </div>
                     <div>
-                        <p className="text-slate-200 font-medium truncate max-w-[200px]">{selectedFile.name}</p>
-                        <p className="text-slate-400 text-sm">{(selectedFile.size / 1024 / 1024).toFixed(2)} MB</p>
+                        <p className="text-slate-900 font-bold text-lg truncate max-w-[200px]">{selectedFile.name}</p>
+                        <p className="text-slate-500 font-medium">{(selectedFile.size / 1024 / 1024).toFixed(2)} MB</p>
                     </div>
                 </div>
                 <button
                     onClick={() => onFileSelect(null)}
-                    className="p-2 hover:bg-slate-700 rounded-lg transition-colors text-slate-400 hover:text-white"
+                    className="p-3 hover:bg-red-50 rounded-xl transition-colors text-slate-400 hover:text-red-500"
                 >
-                    <X className="w-5 h-5" />
+                    <X className="w-6 h-6" />
                 </button>
             </div>
         );
@@ -69,11 +69,11 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileSelect, selectedFile }) =
             onDragOver={handleDrag}
             onDrop={handleDrop}
             className={`
-        relative border-2 border-dashed rounded-xl p-8 transition-all duration-300 ease-in-out
-        flex flex-col items-center justify-center text-center cursor-pointer
+        relative border-4 border-dashed rounded-2xl p-8 transition-all duration-300 ease-in-out
+        flex flex-col items-center justify-center text-center cursor-pointer bg-slate-50
         ${isDragging
-                    ? 'border-blue-500 bg-blue-500/10 scale-[1.02]'
-                    : 'border-slate-700 hover:border-blue-500/50 hover:bg-slate-800/50 bg-slate-900/50'
+                    ? 'border-yellow-500 bg-yellow-50 scale-[1.02]'
+                    : 'border-slate-300 hover:border-yellow-400 hover:bg-white'
                 }
       `}
         >
@@ -83,14 +83,14 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileSelect, selectedFile }) =
                 onChange={handleChange}
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
             />
-            <div className="p-4 bg-slate-800 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
-                <Upload className={`w-8 h-8 ${isDragging ? 'text-blue-400' : 'text-slate-400'}`} />
+            <div className={`p-5 rounded-full mb-4 transition-transform duration-300 group-hover:scale-110 ${isDragging ? 'bg-yellow-100' : 'bg-white shadow-sm'}`}>
+                <Upload className={`w-10 h-10 ${isDragging ? 'text-yellow-600' : 'text-slate-400'}`} />
             </div>
-            <h3 className="text-lg font-semibold text-slate-200 mb-1">
-                Upload Resume (PDF)
+            <h3 className="text-xl font-bold text-slate-800 mb-1">
+                Upload Resume
             </h3>
-            <p className="text-slate-400 text-sm">
-                Drag & drop or click to browse
+            <p className="text-slate-500 font-medium">
+                PDF Format Only
             </p>
         </div>
     );
